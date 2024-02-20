@@ -1,0 +1,11 @@
+topic_synchronizer:
+  ros__parameters:
+    topics:
+      odom_source: /locomotion/odom
+      odom_gt_source: /zed_camera/odom_transf
+      imu_source: /localisation/imu/data
+      odom_output: /locomotion/odom_sync
+      odom_gt_output: /zed_camera/odom_transf_sync
+      imu_output: /localisation/imu/data_sync
+    # interval_duration: 100000000.0
+    approx_policy: 100.0
