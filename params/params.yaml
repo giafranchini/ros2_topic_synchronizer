@@ -2,10 +2,12 @@ topic_synchronizer:
   ros__parameters:
     topics:
       source:
-        odom_filtered: /locomotion/odom_filtered
-        odom_gt: /zed_camera/odom_transf
+        odom0: /odometry0
+        odom1: /odometry1
+        odom2: /odometry2
       output:
-        odom_filtered: /emrs/odometry/filtered_transf
-        odom_gt: /gnss/odom
+        odom0: /odometry0/sync
+        odom1: /odometry1/sync
+        odom2: /odometry2/sync
     interval_duration: 500000000.0
     approx_policy: 10
