@@ -4,10 +4,8 @@ topic_synchronizer:
       source:
         odom0: /odometry0
         odom1: /odometry1
-        odom2: /odometry2
       output:
         odom0: /odometry0/sync
         odom1: /odometry1/sync
-        odom2: /odometry2/sync
     interval_duration: 500000000.0
     approx_policy: 10
