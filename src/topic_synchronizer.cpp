@@ -73,8 +73,8 @@ TopicSynchronizer::TopicSynchronizer(const rclcpp::NodeOptions & options)
     *odom_filtered_subs,
     *odom_gt_subs);
 
-  time_sync_->setMaxIntervalDuration(rclcpp::Duration(0, interval_duration));
-  time_sync_->registerCallback(
+  time_sync->setMaxIntervalDuration(rclcpp::Duration(0, interval_duration));
+  time_sync->registerCallback(
     std::bind(&TopicSynchronizer::ts_callback, this, _1, _2, _3, _4, _5, _6, _7));
 }
 
@@ -86,32 +86,18 @@ void TopicSynchronizer::ts_callback(
   const nav_msgs::msg::Odometry::ConstSharedPtr & odom_msg,
   const nav_msgs::msg::Odometry::ConstSharedPtr & odom_filtered_msg,
   const nav_msgs::msg::Odometry::ConstSharedPtr & odom_gt_msg)
-{
-  rclcpp::Time cmd_vel_time = cmd_vel_msg->header.stamp;
-  rclcpp::Time feedback_time = feedback_msg->header.stamp;
-  rclcpp::Time joint_state_time = joint_state_msg->header.stamp;
-  rclcpp::Time imu_time = imu_msg->header.stamp;
-  rclcpp::Time odom_time = odom_msg->header.stamp;
-  rclcpp::Time odom_filtered_time = odom_filtered_msg->header.stamp;
-  rclcpp::Time odom_gt_time = odom_gt_msg->header.stamp;
-  
+{ 
   RCLCPP_DEBUG(get_logger(), "Received messages");
   RCLCPP_DEBUG(get_logger(), 
     "Publishing messages at time: \n%f \n%f \n%f", 
-    cmd_vel_msg->header.stamp.sec + cmd_vel_msg->header.stamp.nanosec * 1e-9,
-    feedback_msg->header.stamp.sec + feedback_msg->header.stamp.nanosec * 1e-9,
-    joint_state_msg->header.stamp.sec + joint_state_msg->header.stamp.nanosec * 1e-9,
-    imu_msg->header.stamp.sec + imu_msg->header.stamp.nanosec * 1e-9,
-    odom_msg->header.stamp.sec + odom_msg->header.stamp.nanosec * 1e-9,
-    odom_filtered_msg->header.stamp.sec + odom_filtered_msg->header.stamp.nanosec * 1e-9,
-    odom_gt_msg->header.stamp.sec + odom_gt_msg->header.stamp.nanosec * 1e-9);
+    feedback_msg->header.stamp.sec + feedback_msg->header.stamp.nanosec * 1e-9);
  
-  cmd_vel_pub_->publish(*cmd_vel_msg);
-  feedback_pub_->publish(*feedback_msg);
-  joint_state_pub_->publish(*joint_state_msg);
-  imu_pub_->publish(*imu_msg);
-  odom_pub_->publish(*odom_msg);
-  odom_filtered_pub_->publish(*odom_filtered_msg);
-  odom_gt_pub_->publish(*odom_gt_msg);
+  cmd_vel_pub->publish(*cmd_vel_msg);
+  feedback_pub->publish(*feedback_msg);
+  joint_state_pub->publish(*joint_state_msg);
+  imu_pub->publish(*imu_msg);
+  odom_pub->publish(*odom_msg);
+  odom_filtered_pub->publish(*odom_filtered_msg);
+  odom_gt_pub->publish(*odom_gt_msg);
 }
 }  // namespace synchronizer
