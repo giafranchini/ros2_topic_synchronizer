@@ -2,20 +2,12 @@ topic_synchronizer:
   ros__parameters:
     topics:
       source:
-        cmd_vel: /cmd_vel
-        feedback: /feedback
-        imu: /localisation/imu/data
-        joint_states: /joint_states
-        odom: /locomotion/odom
-        odom_filtered: /locomotion/odom_filtered
-        odom_gt: /zed_camera/odom_transf
+        cloud: /cloud
+        image: /image
+        camera_info: /camera_info
       output:
-        cmd_vel: /cmd_vel_sync
-        feedback: /feedback_sync
-        imu: /localisation/imu/data_sync
-        joint_states: /joint_states_sync
-        odom: /locomotion/odom_sync
-        odom_filtered: /locomotion/odom_filtered_sync
-        odom_gt: /zed_camera/odom_transf_sync
+        cloud: /cloud/sync
+        image: /image/sync
+        camera_info: /camera_info/sync
     interval_duration: 500000000.0
     approx_policy: 100.0
