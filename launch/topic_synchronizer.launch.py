@@ -6,7 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 import os
 
 def generate_launch_description():
-  
+    log_level = 'DEBUG'  # 'INFO', 'DEBUG', 'WARN', 'ERROR', 'FATAL'
     container = ComposableNodeContainer(
         name='synchronizer_container',
         namespace='',
@@ -22,6 +22,12 @@ def generate_launch_description():
             ),
         ],
         output='both',
+        arguments=['--ros-args', 
+            '--log-level', log_level, 
+            '--log-level', 'rcl:=INFO',
+            '--log-level', 'rclcpp:=INFO',
+            '--log-level', 'rmw_fastrtps_cpp:=INFO',
+            '--log-level', 'pluginlib:=INFO',],
     )
 
     return LaunchDescription([container])

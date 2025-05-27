@@ -16,7 +16,6 @@ find_package(rcutils REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
-find_package(jackal_msgs REQUIRED)
 find_package(message_filters REQUIRED)
 
 add_library(topic_synchronizer_node SHARED src/topic_synchronizer.cpp)
@@ -35,7 +34,6 @@ target_link_libraries(
   ${geometry_msgs_TARGETS}
   ${sensor_msgs_TARGETS}
   ${nav_msgs_TARGETS}
-  ${jackal_msgs_TARGETS}
 )
 
 add_library(topic_synchronizer SHARED src/Component.cpp)
@@ -80,8 +78,7 @@ ament_export_dependencies(
   message_filters
   geometry_msgs
   sensor_msgs
-  nav_msgs
-  jackal_msgs)
+  nav_msgs)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
